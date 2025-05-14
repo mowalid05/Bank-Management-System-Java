@@ -1,3 +1,15 @@
+<%@ page language="java" session="true" %>
+<%
+    // Prevent back navigation after logout
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+    String ssn = (String) session.getAttribute("ssn");
+    if (ssn == null) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +107,11 @@
                 <a href="ViewTeamPerformance.html"><i class="bi bi-bar-chart-line"></i> View Team Performance</a>
                 <a href="EmployeeManagement.html"><i class="bi bi-person-gear"></i> Employee Management</a>
                 <a href="ReportAndConfig.html"><i class="bi bi-gear-wide-connected"></i> Reports & Configuration</a>
-                <a href="index.html"><i class="bi bi-box-arrow-right"></i> Log out</a>
+                <form action="LogoutServlet" method="post">
+                <button type="submit" class="btn btn-danger w-100 d-flex align-items-center gap-2">
+                    <i class="bi bi-box-arrow-right"></i> Log Out
+                </button>
+            </form>
             </div>
             <div class="footer-note">
                 <i class="bi bi-bank2"></i> Authorized access for bank managers only.
@@ -107,3 +123,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

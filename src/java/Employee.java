@@ -80,7 +80,7 @@ public class Employee extends Person {
         }
         return clients;
     }
-   public ArrayList<PendingApprovals> getMyrequests()
+ static  public ArrayList<PendingApprovals> getMyrequests(int ssn)
     {
         DB_Connection db = new DB_Connection();
          ArrayList<PendingApprovals> requests = new ArrayList<>();
@@ -96,8 +96,8 @@ public class Employee extends Person {
 
                     requests.add(new PendingApprovals(
                         rs.getInt("approval_id"),
-                        rs.getInt("requestedBy"),
-                        rs.getInt("account"),
+                        rs.getInt("requested_by"),
+                        rs.getInt("account_id"),
                         rs.getBigDecimal("amount"),
                         rs.getString("transaction_type"),
                         rs.getString("status"),
