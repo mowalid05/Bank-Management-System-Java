@@ -103,7 +103,7 @@
                 <h3>Manager Dashboard</h3>
             </div>
             <div class="menu">
-                <a href="ApproveTransactions.html"><i class="bi bi-check-circle"></i> Approve Pending Transactions</a>
+                <a href="ManagerApprovals"><i class="bi bi-check-circle"></i> Approve Pending Transactions</a>
                 <a href="ViewTeamPerformance.html"><i class="bi bi-bar-chart-line"></i> View Team Performance</a>
                 <a href="EmployeeManagement.html"><i class="bi bi-person-gear"></i> Employee Management</a>
                 <a href="ReportAndConfig.html"><i class="bi bi-gear-wide-connected"></i> Reports & Configuration</a>

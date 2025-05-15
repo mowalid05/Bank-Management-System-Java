@@ -9,8 +9,10 @@
  */
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TransactionHandler {
     private static final BigDecimal APPROVAL_THRESHOLD = new BigDecimal("500000");
@@ -28,7 +30,11 @@ public class TransactionHandler {
             pstmt.setBigDecimal(1, amount);
             pstmt.setInt(2, accountId);
             pstmt.executeUpdate();
-        }
+        } catch (SQLException e) {
+    System.err.println("procces deposte failed: " + e.getMessage());
+    throw e;
+}
+
     }
     
     public static void processWithdrawal(Connection conn, int accountId, BigDecimal amount) 
@@ -71,6 +77,34 @@ public class TransactionHandler {
             pstmt.setInt(4, accountId); // Same account for deposit/withdrawal
             pstmt.setString(5, transactionType);
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+    System.err.println("record Transaction failed: " + e.getMessage());
+    throw e;
+}
+
+    }
+  public static ArrayList<PendingApprovals> getPendingRequests(Connection conn, int employeeSSN) 
+    throws SQLException {
+    
+    ArrayList<PendingApprovals> requests = new ArrayList<>();
+    String sql = "SELECT * FROM Pending_Approvals WHERE requested_by = ? AND status = 'PENDING'"; // Add status filter
+    
+    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setInt(1, employeeSSN);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()) {
+            requests.add(new PendingApprovals(
+                rs.getInt("approval_id"), // Match exact DB column name
+                rs.getInt("requested_by"),
+                rs.getInt("account_id"),
+                rs.getBigDecimal("amount"),
+                rs.getString("transaction_type"),
+                rs.getString("status"),
+                rs.getTimestamp("requested_at").toLocalDateTime()
+            ));
         }
     }
+    return requests;
+}
 }

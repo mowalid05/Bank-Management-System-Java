@@ -29,7 +29,7 @@ public class WithdrawServlet extends HttpServlet {
         try {
             int accountId = Integer.parseInt(request.getParameter("accountId"));
             BigDecimal amount = new BigDecimal(request.getParameter("amount"));
-            int employeeSSN = (int) request.getSession().getAttribute("employeeSSN");
+            int employeeSSN = (int) request.getSession().getAttribute("ssn");
             conn = db.getConnection();
             if(TransactionHandler.requiresApproval(amount)){
                 TransactionHandler.insertApprovalRequest(conn, employeeSSN,

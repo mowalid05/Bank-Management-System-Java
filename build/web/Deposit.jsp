@@ -62,7 +62,7 @@
                 <label for="AccountNumber" class="form-label">
                     <i class="bi bi-person-badge"></i> Account Number
                 </label>
-                <input type="text" class="form-control" id="AccountNumber" name="AccountNumber" required placeholder="Enter your account number">
+                <input type="text" class="form-control" id="AccountNumber" name="accountId" required placeholder="Enter your account number">
             </div>
 
             <div class="mb-3">

@@ -56,12 +56,12 @@ public class LoginServlet extends HttpServlet {
             
             if ("Manager".equalsIgnoreCase(position)) {// Redirect to the Manager page
                 // TODO: create a manger object (add method to create it in the class)
-                request.getRequestDispatcher("manager.html").forward(request, response);
+                request.getRequestDispatcher("manager.jsp").forward(request, response);
             }
             else if ("Clerk".equalsIgnoreCase(position)) {// Redirect to the Employee page
                 // TODO:create a Clerk object (add method to create it in the class)
                 // attach the object 
-               request.getRequestDispatcher("Employee.html").forward(request, response);
+               request.getRequestDispatcher("Employee.jsp").forward(request, response);
             }
             }
             // If credentials are invalid, show an error message and reload the login page

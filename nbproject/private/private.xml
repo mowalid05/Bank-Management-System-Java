@@ -5,8 +5,13 @@
         <group>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/web/accountSummary.jsp</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/Client.java</file>
+            <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/web/Withdraw.jsp</file>
+            <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/web/pending-requests.jsp</file>
+            <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/WithdrawServlet.java</file>
+            <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/web/Deposit.jsp</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/web/accountDetails.jsp</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/Account.java</file>
+            <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/DepositServlet.java</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/DB_Connection.java</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/web/bankkunden.jpg</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/AccountDetailsServlet.java</file>
@@ -14,6 +19,9 @@
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/Transaction.java</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/web/loanDetails.jsp</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/LoginServlet.java</file>
+            <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/TransactionHandler.java</file>
+            <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/web/Employee.jsp</file>
+            <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/PendingRequestsServlet.java</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/Loan.java</file>
             <file>file:/C:/Collge%20related/Advanced/ADV_Project/Bank_ADV/src/java/LoanDetailsServlet.java</file>
         </group>

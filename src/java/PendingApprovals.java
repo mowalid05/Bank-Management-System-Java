@@ -18,9 +18,9 @@ public class PendingApprovals implements Serializable{
     private int requestedBy;
     private int accountId;
     private BigDecimal amount;
-    private String transactionType, status;
+    private String transactionType;
     private LocalDateTime requestedAt;
-
+    private String status;
     public PendingApprovals(int approvalId, int requestedBy, int accountId, BigDecimal amount, String transactionType,String status, LocalDateTime requestedAt) {
         this.approvalId = approvalId;
         this.requestedBy = requestedBy;
@@ -80,5 +80,14 @@ public class PendingApprovals implements Serializable{
     public void setRequestedAt(LocalDateTime requestedAt) {
         this.requestedAt = requestedAt;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     
 }

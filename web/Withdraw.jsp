@@ -1,12 +1,12 @@
-
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 <head>
     <title>Withdraw Funds</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
     <style>
-        /* Background with gradient */
+        /* Reuse the same styles as deposit */
         body {
             background: linear-gradient(135deg, #e0eafc, #cfdef3);
             min-height: 100vh;
@@ -16,7 +16,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Card with soft glass effect */
         .card {
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.8);
@@ -26,14 +25,12 @@
             padding: 2rem;
         }
 
-        /* Button hover effect */
-        .btn-primary:hover {
-            background-color: #0d6efd;
+        .btn-danger:hover {
+            background-color: #dc3545;
             transform: scale(1.03);
             transition: all 0.3s ease;
         }
 
-        /* Icon back button styling */
         .back-btn {
             position: absolute;
             top: 20px;
@@ -42,39 +39,53 @@
     </style>
 </head>
 <body>
-
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="transaction" class="Transaction" scope="request"/>
-<jsp:setProperty name="transaction" property="*"/>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Deposit Funds</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="container mt-5">
-    <div class="card shadow" style="max-width: 500px; margin: 0 auto;">
-        <div class="card-header bg-primary text-white">
-            <h3><i class="bi bi-cash-coin"></i> Deposit Funds</h3>
+    <!-- Error Handling -->
+    <% if (request.getSession().getAttribute("error") != null) { %>
+        <div class="alert alert-danger alert-dismissible fade show" style="position: fixed; top: 20px; right: 20px;">
+            <%= request.getSession().getAttribute("error") %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
-        <div class="card-body">
-            <form action="DepositServlet" method="POST">
-                <div class="mb-3">
-                    <label class="form-label">Account Number</label>
-                    <input type="number" class="form-control" 
-                           name="accountId" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Amount (EGP)</label>
-                    <input type="number" class="form-control" 
-                           name="amount" min="100" step="50" required>
-                </div>
-                <button type="submit" class="btn btn-success w-100">
-                    <i class="bi bi-arrow-down-circle"></i> Deposit
-                </button>
-            </form>
+    <% request.getSession().removeAttribute("error"); } %>
+
+    <div class="card" style="width: 420px;">
+        <h3 class="mb-4 text-center text-danger">
+            <i class="bi bi-cash-stack"></i> Withdraw Funds
+        </h3>
+        <p class="text-muted text-center mb-4">
+            Withdraw money securely. Minimum amount: <strong>100 EGP</strong>
+        </p>
+
+        <form action="WithdrawServlet" method="POST">
+            <div class="mb-3">
+                <label for="accountId" class="form-label">
+                    <i class="bi bi-wallet2"></i> Account Number
+                </label>
+                <input type="number" class="form-control" 
+                       id="accountId" name="accountId" required 
+                       placeholder="Enter account number">
+            </div>
+
+            <div class="mb-3">
+                <label for="amount" class="form-label">
+                    <i class="bi bi-currency-exchange"></i> Amount (EGP)
+                </label>
+                <input type="number" class="form-control" 
+                       id="amount" name="amount" required
+                       min="100" step="50" 
+                       placeholder="Enter withdrawal amount">
+            </div>
+
+            <button type="submit" class="btn btn-danger w-100">
+                <i class="bi bi-arrow-up-circle"></i> Withdraw Now
+            </button>
+        </form>
+
+        <hr class="my-4">
+        <div class="text-center text-muted small">
+            <i class="bi bi-shield-lock"></i> Transactions are secured with 256-bit encryption
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

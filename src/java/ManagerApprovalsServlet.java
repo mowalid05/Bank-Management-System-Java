@@ -4,12 +4,17 @@
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,13 +22,39 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet("/ManagerApprovals")
 public class ManagerApprovalsServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        int managerSSN = (int) request.getSession().getAttribute("ssn");
-            
-            request.setAttribute("approvals", Manger.getMyrequests(managerSSN));
-            request.getRequestDispatcher("manager-approvals.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
+//        if(session == null || session.getAttribute("position") == null || 
+//           !"MANAGER".equals(session.getAttribute("position"))) {
+//            response.sendRedirect("index.html");
+//            return;
+//        }
 
+            Object ssnObj = session.getAttribute("ssn");
+            Integer managerSSN = null;
+            
+            if(ssnObj instanceof Integer) {
+                managerSSN = (Integer) ssnObj;
+            } else if(ssnObj instanceof String) {
+                managerSSN = Integer.parseInt((String) ssnObj);
+            }
+            
+            if(managerSSN == null) {
+                response.sendRedirect("index.html");
+                System.out.println("ssn is null");
+                return;
+            }
+
+        ArrayList<PendingApprovals> approvals=new ArrayList<>();
+        try {
+            approvals = Manager.get_approval_requests(managerSSN);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerApprovalsServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        request.setAttribute("approvals", approvals);
+        
+        request.getRequestDispatcher("manager-approvals.jsp").forward(request, response);
     }
 }
