@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Summary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container p-4">
+        <h2 class="mb-4">View Client Summary</h2>
+        
+        <div class="card" style="max-width: 500px; margin: 0 auto;">
+            <form action="ClientSummaryServlet" method="get">
+                <div class="form-group">
+                    <label for="client_id" class="form-label">Enter Client ID</label>
+                    <input type="text" class="form-control" id="client_id" name="client_id" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">View Summary</button>
+            </form>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="Employee.jsp" class="btn btn-outline-secondary">
+                <span class="icon-arrow-left"></span> Back to Dashboard
+            </a>
+        </div>
+    </div>
+</body>
+</html>
