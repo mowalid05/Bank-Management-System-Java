@@ -43,11 +43,34 @@
     </style>
 </head>
 <body>
+        <% if (request.getSession().getAttribute("error") != null) { %>
+        <div class="alert alert-danger alert-dismissible fade show" style="position: fixed; top: 20px; right: 20px;">
+            <%= request.getSession().getAttribute("error") %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <% request.getSession().removeAttribute("error"); } %>
 
     <!-- Back Icon -->
     <a href="TransactionProcessing.html" class="btn btn-outline-secondary back-btn">
         <i class="bi bi-arrow-left"></i> Back to Transactions
     </a>
+<% if (request.getAttribute("clientFirstName") != null) { %>
+    <div class="card mb-3 p-3 bg-light">
+        <h6 class="text-secondary">
+            <i class="bi bi-person-circle"></i> Client Information
+        </h6>
+        <div class="row">
+            <div class="col-6">
+                <small>Name:</small>
+                <p class="mb-0"><%= request.getAttribute("clientFirstName") %> <%= request.getAttribute("clientLastName") %></p>
+            </div>
+            <div class="col-6">
+                <small>City:</small>
+                <p class="mb-0"><%= request.getAttribute("clientCity") %></p>
+            </div>
+        </div>
+    </div>
+<% } %>
 
     <div class="card" style="width: 420px;">
         <h3 class="mb-4 text-center text-primary">

@@ -25,12 +25,14 @@
             padding: 2rem;
         }
 
-        .btn-danger:hover {
-            background-color: #dc3545;
+        /* Button hover effect */
+        .btn-success:hover {
+            background-color: #198754;
             transform: scale(1.03);
             transition: all 0.3s ease;
         }
 
+        /* Icon back button styling */
         .back-btn {
             position: absolute;
             top: 20px;
@@ -39,6 +41,7 @@
     </style>
 </head>
 <body>
+    
     <!-- Error Handling -->
     <% if (request.getSession().getAttribute("error") != null) { %>
         <div class="alert alert-danger alert-dismissible fade show" style="position: fixed; top: 20px; right: 20px;">
@@ -46,7 +49,26 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <% request.getSession().removeAttribute("error"); } %>
-
+    <a href="TransactionProcessing.html" class="btn btn-outline-secondary back-btn">
+        <i class="bi bi-arrow-left"></i> Back to Transactions
+    </a>
+<% if (request.getAttribute("clientFirstName") != null) { %>
+    <div class="card mb-3 p-3 bg-light">
+        <h6 class="text-secondary">
+            <i class="bi bi-person-circle"></i> Client Information
+        </h6>
+        <div class="row">
+            <div class="col-6">
+                <small>Name:</small>
+                <p class="mb-0"><%= request.getAttribute("clientFirstName") %> <%= request.getAttribute("clientLastName") %></p>
+            </div>
+            <div class="col-6">
+                <small>City:</small>
+                <p class="mb-0"><%= request.getAttribute("clientCity") %></p>
+            </div>
+        </div>
+    </div>
+<% } %>
     <div class="card" style="width: 420px;">
         <h3 class="mb-4 text-center text-danger">
             <i class="bi bi-cash-stack"></i> Withdraw Funds

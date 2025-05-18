@@ -6,7 +6,7 @@
     session.removeAttribute("message");
     session.removeAttribute("AccountNumber");
     session.removeAttribute("amount");
-    boolean success = "Withdraw successfull".equalsIgnoreCase(message);
+    boolean success = "Withdrawn successfully".contains(message);
 %>
 <!DOCTYPE html>
 <html>
